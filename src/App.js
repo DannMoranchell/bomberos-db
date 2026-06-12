@@ -16,8 +16,20 @@ function App() {
     <div className="App">
       <header className="app-header">
         <div className="header-content">
-          <h1>🚒 Sistema de Gestión de Emergencias</h1>
-          <p>Estación de Bomberos</p>
+       
+          <div className="logos-container">
+            <img 
+              src="/images/logo1.png"  
+              alt="Logo izquierdo"
+              className="header-logo"
+            />
+            <img 
+              src="/images/logo2.png" 
+              alt="Logo derecho"
+              className="header-logo"
+            />
+          </div>
+  
         </div>
       </header>
 

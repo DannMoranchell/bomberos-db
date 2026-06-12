@@ -17,26 +17,41 @@ body {
   flex-direction: column;
 }
 
-.app-header {
-  background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
-  color: white;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
 .header-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.app-header h1 {
-  font-size: 28px;
-  margin-bottom: 5px;
+.logos-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
-.app-header p {
-  font-size: 14px;
-  opacity: 0.9;
+.header-logo {
+  height: 140px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logos-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logos-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.app-header {
+  padding: 15px 20px;
 }
 
 .tabs {
