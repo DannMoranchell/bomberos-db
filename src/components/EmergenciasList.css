@@ -1,0 +1,268 @@
+.emergencias-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-actions h2 {
+  color: #cc0000;
+  margin: 0;
+}
+
+.btn-exportar {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-exportar:hover {
+  background-color: #218838;
+}
+
+.filtros-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.filtro-grupo {
+  flex: 1;
+  min-width: 200px;
+}
+
+.input-busqueda {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.select-estado {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.input-fecha {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.btn-limpiar {
+  background-color: #6c757d;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-limpiar:hover {
+  background-color: #5a6268;
+}
+
+.tabla-container {
+  overflow-x: auto;
+}
+
+.emergencias-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.emergencias-table th,
+.emergencias-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.emergencias-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+  position: sticky;
+  top: 0;
+}
+
+.emergencias-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.descripcion-cell {
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.tipo-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #e9ecef;
+}
+
+.tipo-incendio { background-color: #dc3545; color: white; }
+.tipo-rescate { background-color: #28a745; color: white; }
+.tipo-accidente { background-color: #ffc107; color: #333; }
+.tipo-emergencia-médica { background-color: #17a2b8; color: white; }
+.tipo-fuga-de-gas { background-color: #fd7e14; color: white; }
+.tipo-inundación { background-color: #007bff; color: white; }
+
+.estado-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.estado-en-curso {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.estado-finalizada {
+  background-color: #28a745;
+  color: white;
+}
+
+.acciones-cell {
+  white-space: nowrap;
+}
+
+.btn-estado,
+.btn-eliminar {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: opacity 0.3s;
+}
+
+.btn-estado {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-estado:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-eliminar:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.btn-estado:disabled,
+.btn-eliminar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.info-paginacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.items-por-pagina {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.items-por-pagina select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 15px;
+}
+
+.btn-pagina {
+  padding: 8px 16px;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-pagina:hover:not(:disabled) {
+  background-color: #990000;
+}
+
+.btn-pagina:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagina-info {
+  font-weight: bold;
+  color: #333;
+}
+
+.loading,
+.sin-datos {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .filtros-container {
+    flex-direction: column;
+  }
+  
+  .emergencias-table th,
+  .emergencias-table td {
+    padding: 8px;
+  }
+  
+  .acciones-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
