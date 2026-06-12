@@ -59,8 +59,8 @@ const EmergenciasList = () => {
   };
 
   useEffect(() => {
-    fetchEmergencias();
-  }, [searchTerm, estadoFilter, fechaInicio, fechaFin, currentPage, itemsPerPage]);
+  fetchEmergencias();
+}, [searchTerm, estadoFilter, fechaInicio, fechaFin, currentPage, itemsPerPage, fetchEmergencias]);
 
   const handleCambiarEstado = async (id, estadoActual) => {
     const nuevoEstado = estadoActual === 'en curso' ? 'finalizada' : 'en curso';

@@ -32,7 +32,7 @@ export const mapearEmergencia = (fila) => {
   // Extraer campos según la estructura del CSV
   const fecha = fila.Fecha || fila.fecha || '';
   const servicio = fila.Servicio || fila.servicio || fila.tipo || '';
-  const estacion = fila.Estación || fila.estacion || '';
+  
   const sitio = fila.Sitio || fila.sitio || '';
   const via = fila.Vía || fila.via || fila.Via || '';
   const colonia = fila.Colonia || fila.colonia || '';
@@ -112,7 +112,7 @@ export const procesarEnLotes = async (datos, batchSize = 100, callback) => {
 
   for (let i = 0; i < datos.length; i += batchSize) {
     const lote = datos.slice(i, i + batchSize);
-    const emergenciasMapeadas = lote.map(mapearEmergencia);
+    lote.map(mapearEmergencia);
     
     if (callback) {
       callback({
@@ -122,8 +122,7 @@ export const procesarEnLotes = async (datos, batchSize = 100, callback) => {
       });
     }
 
-    // Aquí se devuelven los datos mapeados para insertar después
-    // No insertamos directamente aquí para mantener la separación de responsabilidades
+   
   }
   
   return resultados;
