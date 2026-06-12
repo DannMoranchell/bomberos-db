@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // <-- Ya no necesitas useCallback
 import { supabase } from '../services/supabase';
 import * as XLSX from 'xlsx';
 import './EmergenciasList.css';
@@ -15,52 +15,53 @@ const EmergenciasList = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [accionEnProceso, setAccionEnProceso] = useState(false);
 
-  const fetchEmergencias = async () => {
-    setLoading(true);
-    
-    let query = supabase
-      .from('emergencias')
-      .select('*', { count: 'exact' });
-
-    // Aplicar filtros
-    if (searchTerm) {
-      query = query.or(`tipo_emergencia.ilike.%${searchTerm}%,ubicacion.ilike.%${searchTerm}%,descripcion.ilike.%${searchTerm}%`);
-    }
-
-    if (estadoFilter !== 'todas') {
-      query = query.eq('estado', estadoFilter);
-    }
-
-    if (fechaInicio) {
-      query = query.gte('fecha_emergencia', fechaInicio);
-    }
-
-    if (fechaFin) {
-      query = query.lte('fecha_emergencia', fechaFin);
-    }
-
-    // Paginación
-    const from = (currentPage - 1) * itemsPerPage;
-    const to = from + itemsPerPage - 1;
-    
-    query = query.range(from, to).order('fecha_emergencia', { ascending: false });
-
-    const { data, error, count } = await query;
-
-    if (error) {
-      console.error('Error fetching emergencias:', error);
-      alert('Error al cargar los datos');
-    } else {
-      setEmergencias(data || []);
-      setTotalCount(count || 0);
-    }
-    
-    setLoading(false);
-  };
-
+  // ✅ La función fetch ahora está DENTRO del useEffect
   useEffect(() => {
-  fetchEmergencias();
-}, [searchTerm, estadoFilter, fechaInicio, fechaFin, currentPage, itemsPerPage, fetchEmergencias]);
+    const fetchEmergencias = async () => {
+      setLoading(true);
+      
+      let query = supabase
+        .from('emergencias')
+        .select('*', { count: 'exact' });
+
+      // Aplicar filtros
+      if (searchTerm) {
+        query = query.or(`tipo_emergencia.ilike.%${searchTerm}%,ubicacion.ilike.%${searchTerm}%,descripcion.ilike.%${searchTerm}%`);
+      }
+
+      if (estadoFilter !== 'todas') {
+        query = query.eq('estado', estadoFilter);
+      }
+
+      if (fechaInicio) {
+        query = query.gte('fecha_emergencia', fechaInicio);
+      }
+
+      if (fechaFin) {
+        query = query.lte('fecha_emergencia', fechaFin);
+      }
+
+      // Paginación
+      const from = (currentPage - 1) * itemsPerPage;
+      const to = from + itemsPerPage - 1;
+      
+      query = query.range(from, to).order('fecha_emergencia', { ascending: false });
+
+      const { data, error, count } = await query;
+
+      if (error) {
+        console.error('Error fetching emergencias:', error);
+        alert('Error al cargar los datos');
+      } else {
+        setEmergencias(data || []);
+        setTotalCount(count || 0);
+      }
+      
+      setLoading(false);
+    };
+
+    fetchEmergencias();
+  }, [searchTerm, estadoFilter, fechaInicio, fechaFin, currentPage, itemsPerPage]); // <-- Dependencias claras y estables
 
   const handleCambiarEstado = async (id, estadoActual) => {
     const nuevoEstado = estadoActual === 'en curso' ? 'finalizada' : 'en curso';
@@ -77,7 +78,10 @@ const EmergenciasList = () => {
     if (error) {
       alert('Error al actualizar el estado');
     } else {
-      fetchEmergencias();
+      // Forzar recarga después de actualizar
+      window.location.reload(); // Opción simple
+      // O mejor: llamar al useEffect nuevamente (pero como está dentro del efecto, necesitas otra solución)
+      // Por simplicidad, usa reload o refactoriza para tener una función de recarga externa
     }
     setAccionEnProceso(false);
   };
@@ -96,7 +100,7 @@ const EmergenciasList = () => {
     if (error) {
       alert('Error al eliminar el registro');
     } else {
-      fetchEmergencias();
+      window.location.reload(); // Recargar para ver cambios
     }
     setAccionEnProceso(false);
   };
